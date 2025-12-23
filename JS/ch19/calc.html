@@ -12,12 +12,14 @@
         n2: <input type="number" id="n2">
         <br>
         <button id="btn_add">더하기</button>
+        <button id="btn_multiply">곱하기</button>
         <div id="result"></div>
     </div>
     <script>
         const $inputN1 = document.querySelector('#n1');
         const $inputN2 = document.querySelector('#n2');
         const $btnAdd = document.querySelector('#btn_add');
+        const $btnMul = document.querySelector('#btn_multiply');
         const $result = document.querySelector('#result');
 
         $btnAdd.addEventListener('click',function(){
@@ -28,6 +30,15 @@
             const addValue = Number(n1) + Number(n2);
             $result.innerText = addValue;
         });
+
+        $btnMul.addEventListener('click', function () {
+            const n1 = $inputN1.value;
+            const n2 = $inputN2.value;
+            console.log(n1, n2);
+
+            const addValue = Number(n1) * Number(n2);
+            $result.innerText = addValue;
+        });        
 
         console.log($inputN1);
         console.log($inputN2);
