@@ -7,7 +7,20 @@
 </head>
 <body>
     <h1>ICON EDITOR</h1>
-    <div id="editor"></div>
+    <div id="editor">
+        <!-- <input type="color">
+        <input type="button" value="Clear">
+        <table style="border-collapse: collapse; margin-top: 5px;">
+            <tr>
+                <td style="width: 15px; height: 15px; border: 1px solid grey;"></td>
+                <td style="width: 15px; height: 15px; border: 1px solid grey;"></td>
+                <td style="width: 15px; height: 15px; border: 1px solid grey;"></td>
+                <td style="width: 15px; height: 15px; border: 1px solid grey;"></td>
+                <td style="width: 15px; height: 15px; border: 1px solid grey;"></td>
+                <td style="width: 15px; height: 15px; border: 1px solid grey;"></td>
+            </tr>
+        </table> -->
+    </div>
 
     <script>
         function makeElement(name, attributes) {
@@ -26,6 +39,16 @@
 
             const $inputColorClear = makeElement('input', {type: 'button', value: 'Clear'});
             target.append($inputColorClear);
+            $inputColorClear.addEventListener('click',function() {
+                console.log('Clear 버튼 클릭!');
+                const tdList = document.querySelectorAll('td');
+                // for (const item of tdList){
+                //     item.style.backgroundColor = '' ;
+                // }
+                for ( i = 0 ; i <tdList.length ; i++) {
+                    tdList[i].style.backgroundColor = '';
+                }
+            });
 
             const $table = makeElement('table');
             target.append($table);
@@ -37,11 +60,22 @@
                 $table.append($tr);
                 for (let x=0; x <nx ; x++){
                     const $td = makeElement('td');
-                    $table.append($td);
+                    $tr.append($td);
                     $td.style.width = $td.style.height = '15px';
                     $td.style.border = '1px solid gray';
+                    // $td.addEventListener('click',function(){
+                    //     const col = $inputColor.value;
+                    //     if($td.style.backgroundColor){ $td.style.backgroundColor = '' }
+                    //     else {
+                    //     $td.style.backgroundColor = col;
+                    //     } 
+                    // })
+                    $td.addEventListener('click', e => {
+                        e.target.style.backgroundColor = e.target.style.backgroundColor? '' :$inputColor.value;
+                    });
                 }
             }
+
         }
         const $editor = document.querySelector('#editor');
         createIconEditor($editor, 20, 20);
@@ -49,3 +83,8 @@
     </script>
 </body>
 </html>
+
+<table>
+    <tr></tr>
+    <td style="background-color: col"></td>
+</table>
